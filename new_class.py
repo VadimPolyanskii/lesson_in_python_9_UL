@@ -16,13 +16,11 @@ class NumberCalculation:
     # Методы
     # Произведение чисел
     def product_numbers(self):
-        n1 = self._x * self._y
-        return n1
+        return self._x * self._y
 
     # Сумма чисел
     def sum_numbers(self):
-        n2 = self._x + self._y
-        return n2
+        return self._x + self._y
 
 
 if __name__ == '__main__':
