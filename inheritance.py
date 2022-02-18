@@ -22,12 +22,12 @@ class NaturalNumberTest(NumberCalculation):
         return d == self._x * self._y
 
 
-if __name__ == '__main__':
-    number = NaturalNumberTest(15, 16)
-    print()
-    print('Числа', number._x, number._y)
-    print('Призведение чисел', number._x, 'и', number._y, 'равно', number._x * number._y)
-    print('Является ли число', number._x * number._y, 'простым?', number.number_check())
+# Создадим объект-экемпляр
+number = NaturalNumberTest(15, 16)
+print()
+print('Числа', number._x, number._y)
+print('Призведение чисел', number._x, 'и', number._y, 'равно', number._x * number._y)
+print('Является ли число', number._x * number._y, 'простым?', number.number_check())
 
 
 
