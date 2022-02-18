@@ -15,6 +15,7 @@ class NaturalNumberTest(NumberCalculation):
     def product_numbers(self):
         return self._x * self._y
 
+    # Проверка числа на простоту
     def number_check(self):
         d = 2
         while self._x * self._y % d != 0:
