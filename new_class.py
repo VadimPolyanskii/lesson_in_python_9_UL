@@ -20,7 +20,6 @@ class NumberCalculation:
         :return:
         """
         self._x = random.randint(0, 20)
-        self._y = random.randint(0, 20)
 
     # Получим доступ к инкапсулированному значению x через декоратор доступа
     @property
