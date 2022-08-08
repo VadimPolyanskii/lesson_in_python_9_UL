@@ -1,49 +1,88 @@
-# Импортируем родительский класс
-from new_class import NumberCalculation
+import random
 
 
-# Полиморфизм
-class NaturalNumberTest(NumberCalculation):
+# Создадим класс
+class NumberCalculation:
     '''
-    Проверим, являются ли результирующие числа целыми
+    Считаем произведение и сумму чисел x и y
     '''
+
     # Инициализация
     def __init__(self, x, y):
-        super().__init__(x, y)
+        self._x = x
+        self._y = y
+
+    def arbitrary_numbers(self):
+        """
+        Создадим два случайных числа x и y и инкапсулируем их
+        :return:
+        """
+        self._x = random.randint(0, 20)
+        self._y = random.randint(0, 20)
+
+    # Получим доступ к инкапсулированному значению x через декоратор доступа
+    @property
+    def get_x(self):
+        return self._x
+
+    # Перенастроим число x, используя декоратор настройки
+    @get_x.setter
+    def get_x(self, x):
+        if (x > 0) & (x < 20):
+            self._x = x
+        else:
+            raise ValueError('Числа должны быть от 0 до 20!')
+
+    # Получим доступ к инкапсулированному значению y через декоратор доступа
+    @property
+    def get_y(self):
+        return self._y
+
+    # Перенастроим число x, используя декоратор настройки
+    @get_y.setter
+    def get_y(self, y):
+        if (y > 0) & (y < 20):
+            self._y = y
+        else:
+            raise ValueError('Число должно быть от 0 до 20')
 
     # Произведение чисел
     def product_numbers(self):
-        return self._x * self._y
+        """
+        Возвращает произведение чисел x и y
+        :return:
+        """
+        n = self._x * self._y
+        return n
 
-    # Проверка числа на простоту
-    def number_check(self):
-        d = 2
-        while self._x * self._y % d != 0:
-            d += 1
-        return d == self._x * self._y
+    # Сумма чисел
+    def sum_numbers(self):
+        """
+        Возвращает сумму чисел x и y
+        :return:
+        """
+        n1 = self._x + self._y
+        return n1
+
+    def quotient_numbers(self):
+        """
+        Возвращает частное чисел x и y
+        :return:
+        """
+        n2 = self._x / self._y
+        return n2
 
 
-class Quotient(NumberCalculation):
-    '''
-    Деление суммы чисел на 2 и получение частного
-    '''
+if __name__ == '__main__':
+    # Создадим объект-экземпляр класса
+    obj = NumberCalculation(5, 5)
+    obj.arbitrary_numbers()     # настроим числа
 
-    # Инициализация
-    def __init__(self, x, y):
-        super().__init__(x, y)
-
-    # Делим сумму
-    def sum_division(self):
-        return (self._x + self._y) / 2
-
-
-# Создадим объекты-экземпляры
-number = NaturalNumberTest(15, 16)
-print()
-print('Числа', number._x, 'и', number._y)
-print('Призведение чисел', number._x, 'и', number._y, 'равно', number._x * number._y)
-print('Является ли число', number._x * number._y, 'простым?', number.number_check())
-print()
-q = Quotient(2, 9)
-print('Числа', q._x, 'и', q._y)
-print('Сумма чисел', q._x, 'и', q._y, ', поделённая на 2, равна', q.sum_division())
+    # Перенастроим числа
+    obj.get_x = -2
+    obj.get_y = 43
+    # Выведем объект с атрибутами класса и результирующее число
+    print('Числа:', obj.get_x, obj.get_y)
+    print('Произведение чисел', obj.get_x, 'и', obj.get_y, 'равно', obj.product_numbers())
+    print('Сумма чисел', obj.get_x, 'и', obj.get_y, 'равна', obj.sum_numbers())
+    print('Частное чисел', obj.get_x, 'и', obj.get_y, 'равно', obj.quotient_numbers())
